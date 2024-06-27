@@ -1,20 +1,23 @@
 const mergeSortedArr = (arr1, arr2) => {
     const mergedArr = [];
-    let itemArr1 = arr1[0];
-    let itemArr2 = arr2[0];
+    let indexArr1 = 0;
+    let indexArr2 = 0;
 
-    while (itemArr1 && itemArr2) {
-        console.log(itemArr1 + ' ' + itemArr2);
-        if (!itemArr2 || itemArr1 < itemArr2) {
+    while (indexArr1 < arr1.length && indexArr2 < arr2.length) {
+        let itemArr1 = arr1[indexArr1];
+        let itemArr2 = arr2[indexArr2];
+
+        if (itemArr1 < itemArr2) {
+            console.log(itemArr1);
             mergedArr.push(itemArr1);
-            arr1.shift();
+            indexArr1++;
         } else {
             mergedArr.push(itemArr2);
-            arr2.shift();
+            indexArr2++;
         }
     }
 
     return mergedArr;
 };
 
-console.log(mergeSortedArr([1, 5, 3], [53, 0, 3]));
+console.log(mergeSortedArr([1, 5, 50], [0, 3, 53]));
