@@ -1,17 +1,20 @@
 var productExceptSelf = function (nums) {
-    const productArray = [];
+    const length = nums.length;
+    const result = new Array(length).fill(1);
 
-    for (let i = 0; i < nums.length; i++) {
-        let productElement;
-        for (let j = 0; j < nums.length; j++) {
-            if (i == j) continue;
-            const num = nums[j];
-            productElement = productElement == undefined ? num : num * productElement;
-        }
-        productArray.push(productElement);
+    let leftProduct = 1;
+    for (let i = 0; i < result.length; i++) {
+        result[i] = leftProduct;
+        leftProduct = leftProduct * nums[i];
     }
 
-    return productArray;
+    let rightProduct = 1;
+    for (let i = nums.length - 1; i >= 0; i--) {
+        result[i] = result[i] * rightProduct;
+        rightProduct = rightProduct * nums[i];
+    }
+
+    return result;
 };
 
 console.log(productExceptSelf([1, 2, 3, 4]));
