@@ -109,6 +109,25 @@ class LinkedList {
 
         return array;
     }
+
+    reverse() {
+        if (!this.head.next) return this.head;
+
+        let prev = this.head;
+        this.tail = prev;
+        let current = prev.next;
+
+        while (current !== null) {
+            let next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head.next = null;
+        this.head = prev;
+
+        return this.toArray();
+    }
 }
 
 class Node {
@@ -137,6 +156,6 @@ myList.append(70);
 
 myList.remove(7);
 myList.remove(7);
-console.log(myList.toArray());
-console.log(myList.length);
+// console.log(myList.toArray());
+console.log(myList.reverse());
 // console.log(myList.find(50));
