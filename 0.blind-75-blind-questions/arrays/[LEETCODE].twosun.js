@@ -13,4 +13,20 @@ var twoSum = function (nums, target) {
     return null;
 };
 
-console.log(twoSum([2, 7, 11, 15], 17));
+var twoSumTwoPointersApproach = function (nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    nums = nums.sort((a, b) => a - b);
+
+    while (left < right) {
+        const sum = nums[left] + nums[right];
+        if (sum > target) right--;
+
+        if (sum < target) left++;
+
+        if (sum == target) return [left, right];
+    }
+};
+
+console.log(twoSumTwoPointersApproach([2, 7, 25, 15, 26, 13], 17));
