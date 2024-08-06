@@ -23,4 +23,23 @@ var lengthOfLongestSubstring = function (s) {
     return longestSubstring;
 };
 
+var lengthOfLongestSubstringSlidingWindow = function (s) {
+    let seen = {};
+    let maxLength = 0;
+    let start = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        seen[s[i]] = (seen[s[i]] || 0) + 1;
+
+        while (seen[s[i]] > 1) {
+            seen[s[start]]--;
+            start++;
+        }
+        maxLength = Math.max(maxLength, seen.length);
+    }
+
+    return maxLength;
+};
+
 console.log(lengthOfLongestSubstring('abcabcbb'));
+console.log(lengthOfLongestSubstring('substring'));
